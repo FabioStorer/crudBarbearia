@@ -1,14 +1,16 @@
+const controller_usuario = require('./usuario.js');
 const db = [];
 let nextId = 1;
 
-const model = (usuario, id = nextId++) => {
-    if (usuario.email != '' &&
-        usuario.email != undefined &&
-        usuario.senha === 'abc123') {
+const model = (rede, id = nextId++) => {
+    if (rede.nome != '' &&
+        rede.nome != undefined &&
+        rede.usuario_id != undefined &&
+        controller_usuario.show(usuario.rede_id)) {
         return {
             id,
-            email: usuario.email,
-            senha: usuario.senha,
+            nome: rede.nome,
+            usuario_id: rede.usuario_id
         };
     }
 };
@@ -28,10 +30,10 @@ const index = () => db;
 const show = id => db.find(el => el.id == id);
 
 const update = () => {
-    const index = db.findIndex(el => db.id == id);
+    const index = db.findIndex(el => el.id == id);
     const novo = model();
 
-    if (novo) {
+    if (index != -1) {
         db[index] = novo;
         return 201;
     }
@@ -39,7 +41,7 @@ const update = () => {
 };
 
 const destroy = () => {
-    const index = db.findIndex(el => el.id == id);
+    const index = findIndex(el => el.id == id);
 
     if (index != -1) {
         db.splice(index, 1);
