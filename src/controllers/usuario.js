@@ -27,9 +27,9 @@ const index = () => db;
 
 const show = id => db.find(el => el.id == id);
 
-const update = () => {
+const update = (id, body) => {
     const index = db.findIndex(el => db.id == id);
-    const novo = model();
+    const novo = model(id, body);
 
     if (novo) {
         db[index] = novo;
@@ -38,7 +38,7 @@ const update = () => {
     return 400;
 };
 
-const destroy = () => {
+const destroy = (id) => {
     const index = db.findIndex(el => el.id == id);
 
     if (index != -1) {

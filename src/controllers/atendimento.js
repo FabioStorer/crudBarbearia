@@ -36,18 +36,18 @@ const index = () => db;
 
 const show = id => db.find(el => el.id == id);
 
-const update = () => {
+const update = (id, body) => {
     const index = db.findIndex(el => el.id == id);
-    const novo = model();
+    const novo = model(id, body);
 
-    if (index != - 1) {
+    if (novo && index != - 1) {
         db[index] = novo;
         return 201;
     }
     return 400;
 };
 
-const destroy = () => {
+const destroy = (id) => {
     const index = db.findIndex(el => el.id == id);
 
     if (index != - 1) {

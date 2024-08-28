@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.post('/atendimento', (req, res) => {
     const atendimento = req.body;
-    const code = atendimento_controller.store(atendimento);
+    const code = atendimento_controller.store(req.body);
     res.status(code).json();
 });
 
@@ -32,7 +32,7 @@ app.get('/atendimento/:id', (req, res) => {
 
 app.put('/atendimento/:id', (req, res) => {
     const atendimento = req.body;
-    const code = atendimento_controller.update(req.params.id, atendimento);
+    const code = atendimento_controller.update(req.params.id, req.body);
     res.status(code).json();
 });
 
@@ -61,7 +61,7 @@ app.get('/barbearia/:id', (req, res) => {
 });
 
 app.put('/barbearia/:id', (req, res) => {
-    const code = barbearia_controller.update(req.body, req.params.id)
+    const code = barbearia_controller.update(req.params.id, req.body)
     res.status(code).json();
 });
 
@@ -74,7 +74,7 @@ app.delete('/barbearia/:id', (req, res) => {
 
 app.post('/barbeiro', (req, res) => {
     const barbeiro = req.body;
-    const code = barbeiro_controller.store(barbeiro);
+    const code = barbeiro_controller.store(req.body);
     res.status(code).json();
 });
 
@@ -90,7 +90,7 @@ app.get('/barbeiro/:id', (req, res) => {
 
 app.put('/barbeiro/:id', (req, res) => {
     const barbeir0 = req.body;
-    const code = barbeiro_controller.update(req.params.id, barbeir0);
+    const code = barbeiro_controller.update(req.params.id, req.body);
     res.status(code).json();
 });
 
@@ -103,7 +103,7 @@ app.delete('/barbeiro/:id', (req, res) => {
 
 app.post('/cliente', (req, res) => {
     const cliente = req.body;
-    const code = cliente_controller.store(cliente);
+    const code = cliente_controller.store(req.body);
     res.status(code).json();
 });
 
@@ -119,7 +119,7 @@ app.get('/cliente/:id', (req, res) => {
 
 app.put('/cliente/:id', (req, res) => {
     const cliente = req.body;
-    const code = cliente_controller.update(req.params.id, cliente);
+    const code = cliente_controller.update(req.params.id, req.body);
     res.status(code).json();
 });
 
@@ -132,7 +132,7 @@ app.delete('/cliente/:id', (req, res) => {
 
 app.post('/rede', (req, res) => {
     const rede = req.body;
-    const code = rede_controller.store(rede);
+    const code = rede_controller.store(req.body);
     res.status(code).json();
 });
 
@@ -148,7 +148,7 @@ app.get('/rede/:id', (req, res) => {
 
 app.put('/rede/:id', (req, res) => {
     const rede = req.body;
-    const code = rede_controller.update(req.params.id, rede);
+    const code = rede_controller.update(req.params.id, req.body);
     res.status(code).json();
 });
 
@@ -161,7 +161,7 @@ app.delete('/rede/:id', (req, res) => {
 
 app.post('/servico', (req, res) => {
     const servico = req.body;
-    const code = servico_controller.store(servico);
+    const code = servico_controller.store(req.body);
     res.status(code).json();
 });
 
@@ -177,7 +177,7 @@ app.get('/servico/:id', (req, res) => {
 
 app.put('/servico/:id', (req, res) => {
     const servico = req.body;
-    const code = servico_controller.update(req.params.id, servico);
+    const code = servico_controller.update(req.params.id, req.body);
     res.status(code).json();
 });
 
@@ -190,7 +190,7 @@ app.delete('/servico/:id', (req, res) => {
 
 app.post('/usuario', (req, res) => {
     const usuario = req.body;
-    const code = usuario_controller.store(usuario);
+    const code = usuario_controller.store(req.body);
     res.status(code).json();
 });
 
@@ -206,7 +206,7 @@ app.get('/usuario/:id', (req, res) => {
 
 app.put('/usuario/:id', (req, res) => {
     const usuario = req.body;
-    const code = usuario_controller.update(req.params.id, usuario);
+    const code = usuario_controller.update(req.params.id, req.body);
     res.status(code).json();
 });
 
