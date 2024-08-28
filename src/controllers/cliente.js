@@ -3,17 +3,32 @@ let nextId = 1;
 
 const model = (cliente, id = nextId++) => {
 
-    if (cliente.nome != '' &&
-        cliente.nome != undefined &&
-        cliente.telefone != '') {
+    const telefone = cliente.telefone.replaceAll('-', '').replaceAll('(', '').replaceAll(')', '').replaceAll(' ', '');
+
+    let soNumeros = true
+
+    telefone.split('').forEach(el => {
+        if (isNaN(Number(el))) {
+            soNumeros = false
+        }
+    })
+
+    if (cliente.nome != undefined &&
+        telefone != undefined &&
+        cliente.email != undefined &&
+        cliente.nome != '' &&
         cliente.email != '' &&
-        cliente.senha != ''} {
+        cliente.email.includes('@') &&
+        telefone != '' &&
+        telefone.length >= 11 &&
+        telefone.length <= 12 &&
+        soNumeros) {
         return {
             id,
             nome: cliente.nome,
-            telefone: cliente.telefone,
+            telefone: telefone,
             email: cliente.email,
-            senha: cliente.senha,
+            senha: cliente.senha
         };
     }
 };
@@ -33,11 +48,11 @@ const index = () => db;
 
 const show = id => db.find(el => el.id == id);
 
-const update = () => {
+const update = (body, id) => {
 
     const index = db.findIndex(el => el.id == id);
 
-    const novo = model();
+    const novo = model(body, id);
 
     if (index != - 1) {
         db[index] = novo;

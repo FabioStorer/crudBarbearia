@@ -1,6 +1,7 @@
 const express = require('express');
 const endereco = require('./controllers/middlewares/endereco.js');
 const atendimento_controller = require('./controllers/atendimento.js');
+const barbearia_controller = require('./controllers/barbearia.js');
 const barbeiro_controller = require('./controllers/barbeiro.js');
 const cliente_controller = require('./controllers/cliente.js');
 const rede_controller = require('./controllers/rede.js');
@@ -10,11 +11,6 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
-// app.use(endereco);
-
-app.post('/barbearia', endereco, (req, res) => {
-    res.json(req.body);
-});
 
 /// GERENCIAMENTO DO ATENDIMENTO ///
 
@@ -42,6 +38,35 @@ app.put('/atendimento/:id', (req, res) => {
 
 app.delete('/atendimento/:id', (req, res) => {
     atendimento_controller.destroy(req.params.id);
+    res.json();
+});
+
+/// GERENCIAMENTO DE BARBEARIA ///
+
+app.post('/barbearia', endereco, (req, res) => {
+    res.json(req.body);
+});
+
+app.post('/barbearia', (req, res) => {
+    const code = barbearia_controller.store(req.body);
+    res.status(code).json();
+});
+
+app.get('/barbearia', (req, res) => {
+    res.json(barbearia_controller.index());
+});
+
+app.get('/barbearia/:id', (req, res) => {
+    res.json(barbearia_controller.show(req.params.id));
+});
+
+app.put('/barbearia/:id', (req, res) => {
+    const code = barbearia_controller.update(req.body, req.params.id)
+    res.status(code).json();
+});
+
+app.delete('/barbearia/:id', (req, res) => {
+    barbearia_controller.destroy(req.params.id);
     res.json();
 });
 
