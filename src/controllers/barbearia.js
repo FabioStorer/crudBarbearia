@@ -1,23 +1,21 @@
-const servicos_controller = require('./servico.js');
-const clientes_controller = require('./cliente.js');
+const rede_controller = require('./rede.js');
 const db = [];
 let nextId = 1;
 
-const model = (atendimento, id = nextId++) => {
-    if (servicos.length > 0 &&
-        servicos.length != undefined &&
-        atendimento.cliente_id != undefined &&
-        atendimento.inicio != '' &&
-        atendimento.inicio != undefined &&
-        atendimento.preco != '' &&
-        atendimento.status != '') {
+const model = (barbearia, id = nextId++) => {
+
+    if (barbearia.nome != '' &&
+        barbearia.nome != undefined &&
+        barbearia.foto != '' &&
+        barbearia.endereco != undefined &&
+        barbearia.rede_id != undefined &&
+        rede_controller.show(barbearia.rede_id)) {
         return {
             id,
-            servicos: servicos,
-            cliente: atendimento.cliente_id,
-            inicio: atendimento.inicio,
-            preco: atendimento.preco,
-            status: atendimento.status
+            nome: barbearia.nome,
+            endereco: barbearia.endereco,
+            foto: barbearia.foto,
+            rede_id: barbearia.rede_id
         };
     }
 };
@@ -29,7 +27,7 @@ const store = () => {
         db.push(novo);
         return 201;
     }
-    return 400
+    return 400;
 };
 
 const index = () => db;
@@ -54,7 +52,7 @@ const destroy = () => {
         db.splice(index, 1);
         return 201;
     }
-    return 400;
+    return 400
 };
 
 module.exports = {
