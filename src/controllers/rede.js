@@ -49,3 +49,11 @@ const destroy = () => {
     }
     return 400;
 };
+
+module.exports = {
+    store,
+    index,
+    show,
+    update,
+    destroy
+};
