@@ -15,7 +15,6 @@ app.use(express.json());
 /// GERENCIAMENTO DO ATENDIMENTO ///
 
 app.post('/atendimento', (req, res) => {
-    const atendimento = req.body;
     const code = atendimento_controller.store(req.body);
     res.status(code).json();
 });
@@ -31,7 +30,6 @@ app.get('/atendimento/:id', (req, res) => {
 });
 
 app.put('/atendimento/:id', (req, res) => {
-    const atendimento = req.body;
     const code = atendimento_controller.update(req.params.id, req.body);
     res.status(code).json();
 });
@@ -73,7 +71,6 @@ app.delete('/barbearia/:id', (req, res) => {
 /// GERENCIAMENTO DO BARBEIRO ///
 
 app.post('/barbeiro', (req, res) => {
-    const barbeiro = req.body;
     const code = barbeiro_controller.store(req.body);
     res.status(code).json();
 });
@@ -89,7 +86,6 @@ app.get('/barbeiro/:id', (req, res) => {
 });
 
 app.put('/barbeiro/:id', (req, res) => {
-    const barbeir0 = req.body;
     const code = barbeiro_controller.update(req.params.id, req.body);
     res.status(code).json();
 });
@@ -102,7 +98,6 @@ app.delete('/barbeiro/:id', (req, res) => {
 ///GERENCIAMENTO DO CLIENTE ///
 
 app.post('/cliente', (req, res) => {
-    const cliente = req.body;
     const code = cliente_controller.store(req.body);
     res.status(code).json();
 });
@@ -118,7 +113,6 @@ app.get('/cliente/:id', (req, res) => {
 });
 
 app.put('/cliente/:id', (req, res) => {
-    const cliente = req.body;
     const code = cliente_controller.update(req.params.id, req.body);
     res.status(code).json();
 });
@@ -131,7 +125,6 @@ app.delete('/cliente/:id', (req, res) => {
 /// GERENCIAMENTO DA REDE ///
 
 app.post('/rede', (req, res) => {
-    const rede = req.body;
     const code = rede_controller.store(req.body);
     res.status(code).json();
 });
@@ -147,7 +140,6 @@ app.get('/rede/:id', (req, res) => {
 });
 
 app.put('/rede/:id', (req, res) => {
-    const rede = req.body;
     const code = rede_controller.update(req.params.id, req.body);
     res.status(code).json();
 });
@@ -160,7 +152,6 @@ app.delete('/rede/:id', (req, res) => {
 /// GERENCIAMENTO DE SERVIÇO ///
 
 app.post('/servico', (req, res) => {
-    const servico = req.body;
     const code = servico_controller.store(req.body);
     res.status(code).json();
 });
@@ -176,7 +167,6 @@ app.get('/servico/:id', (req, res) => {
 });
 
 app.put('/servico/:id', (req, res) => {
-    const servico = req.body;
     const code = servico_controller.update(req.params.id, req.body);
     res.status(code).json();
 });
@@ -189,7 +179,6 @@ app.delete('/servico/:id', (req, res) => {
 /// GERENCIAMENTO DE USUÁRIO ///
 
 app.post('/usuario', (req, res) => {
-    const usuario = req.body;
     const code = usuario_controller.store(req.body);
     res.status(code).json();
 });
@@ -205,7 +194,6 @@ app.get('/usuario/:id', (req, res) => {
 });
 
 app.put('/usuario/:id', (req, res) => {
-    const usuario = req.body;
     const code = usuario_controller.update(req.params.id, req.body);
     res.status(code).json();
 });
