@@ -1,27 +1,7 @@
-const rede_controller = require('./rede.js');
 const db = [];
-let nextId = 1;
 
-const model = (barbearia, id = nextId++) => {
-
-    if (barbearia.nome != '' &&
-        barbearia.nome != undefined &&
-        barbearia.foto != '' &&
-        barbearia.endereco != undefined &&
-        barbearia.rede_id != undefined &&
-        rede_controller.show(barbearia.rede_id)) {
-        return {
-            id,
-            nome: barbearia.nome,
-            endereco: barbearia.endereco,
-            foto: barbearia.foto,
-            rede_id: barbearia.rede_id
-        };
-    }
-};
-
-const store = () => {
-    const novo = model();
+const store = (body) => {
+    const novo = model(body);
 
     if (novo) {
         db.push(novo);

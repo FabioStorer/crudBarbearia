@@ -1,12 +1,12 @@
 const express = require('express');
-const endereco = require('./controllers/middlewares/endereco.js');
+const endereco = require('./middlewares/endereco.js');
 const atendimento_controller = require('./controllers/atendimento.js');
 const barbearia_controller = require('./controllers/barbearia.js');
 const barbeiro_controller = require('./controllers/barbeiro.js');
 const cliente_controller = require('./controllers/cliente.js');
 const rede_controller = require('./controllers/rede.js');
-const servico_controller = require('./controllers/rede.js');
-const usuario_controller = require('./controllers/usuario.js');
+const servico_controller = require('./controllers/servico.js');
+const usuario_router = require('./routes/usuario.js');
 const app = express();
 const port = 3000;
 
@@ -42,10 +42,6 @@ app.delete('/atendimento/:id', (req, res) => {
 /// GERENCIAMENTO DE BARBEARIA ///
 
 app.post('/barbearia', endereco, (req, res) => {
-    res.json(req.body);
-});
-
-app.post('/barbearia', (req, res) => {
     const code = barbearia_controller.store(req.body);
     res.status(code).json();
 });
@@ -58,7 +54,7 @@ app.get('/barbearia/:id', (req, res) => {
     res.json(barbearia_controller.show(req.params.id));
 });
 
-app.put('/barbearia/:id', (req, res) => {
+app.put('/barbearia/:id', endereco, (req, res) => {
     const code = barbearia_controller.update(req.params.id, req.body)
     res.status(code).json();
 });
@@ -176,32 +172,9 @@ app.delete('/servico/:id', (req, res) => {
     res.json();
 });
 
-/// GERENCIAMENTO DE USUÁRIO ///
+/// USUÁRIO ///
 
-app.post('/usuario', (req, res) => {
-    const code = usuario_controller.store(req.body);
-    res.status(code).json();
-});
-
-app.get('/usuario', (req, res) => {
-    const usuario = usuario_controller.index();
-    res.json(usuario);
-});
-
-app.get('/usuario/:id', (req, res) => {
-    const usuario = usuario_controller.show(req.params.id);
-    res.json(usuario);
-});
-
-app.put('/usuario/:id', (req, res) => {
-    const code = usuario_controller.update(req.params.id, req.body);
-    res.status(code).json();
-});
-
-app.delete('/usuario/:id', (req, res) => {
-    usuario_controller.destroy(req.params.id);
-    res.json();
-});
+app.use('/usuario', usuario_router);
 
 /// LISTEN ///
 

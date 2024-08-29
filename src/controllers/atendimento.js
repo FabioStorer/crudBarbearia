@@ -22,8 +22,8 @@ const model = (atendimento, id = nextId++) => {
     }
 };
 
-const store = () => {
-    const novo = model();
+const store = (body) => {
+    const novo = model(body);
 
     if (novo) {
         db.push(novo);

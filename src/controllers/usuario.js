@@ -1,20 +1,7 @@
 const db = [];
-let nextId = 1;
 
-const model = (usuario, id = nextId++) => {
-    if (usuario.email != '' &&
-        usuario.email != undefined &&
-        usuario.senha === 'abc123') {
-        return {
-            id,
-            email: usuario.email,
-            senha: usuario.senha,
-        };
-    }
-};
-
-const store = () => {
-    const novo = model();
+const store = (body) => {
+    const novo = model(body);
 
     if (novo) {
         db.push(novo);
@@ -28,10 +15,10 @@ const index = () => db;
 const show = id => db.find(el => el.id == id);
 
 const update = (id, body) => {
-    const index = db.findIndex(el => db.id == id);
-    const novo = model(id, body);
+    const index = db.findIndex(el => el.id == id);
+    const novo = model(body, id);
 
-    if (novo) {
+    if (novo && index != - 1) {
         db[index] = novo;
         return 201;
     }

@@ -1,24 +1,7 @@
 const db = [];
-let nextId = 1;
 
-const model = (barbeiro, id = nextId++) => {
-
-    if (barbeiro.nome != '' &&
-        barbeiro.nome != undefined &&
-        barbeiro.foto != '' &&
-        barbeiro.bio != '' &&
-        barbeiro.bio != undefined) {
-        return {
-            id,
-            nome: barbeiro.nome,
-            foto: barbeiro.foto,
-            bio: barbeiro.bio
-        };
-    }
-};
-
-const store = () => {
-    const novo = model();
+const store = (body) => {
+    const novo = model(body);
 
     if (novo) {
         db.push(novo);

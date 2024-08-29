@@ -1,23 +1,7 @@
-const barbeiros_controller = require('./barbeiro.js');
 const db = [];
-let nextId = 1;
 
-const model = (servico, id = nextId++) => {
-    if (servico.nome != '' &&
-        servico.nome != undefined &&
-        servico.preco != '' &&
-        servico.duracao != '') {
-        return {
-            id,
-            nome: servico.nome,
-            preco: servico.preco,
-            duracao: servico.duracao
-        };
-    }
-};
-
-const store = () => {
-    const novo = model();
+const store = (body) => {
+    const novo = model(body);
 
     if (novo) {
         db.push(novo);
@@ -33,7 +17,7 @@ const show = id => db.find(el => el.id == id);
 const update = (id, body) => {
 
     const index = db.findIndex(el => el.id == id);
-    const novo = model();
+    const novo = model(body, id);
 
     if (index != - 1) {
         db[index] = novo;
