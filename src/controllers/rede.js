@@ -1,7 +1,8 @@
+const rede_model = require('../models/rede_model.js');
 const db = [];
 
 const store = (body) => {
-    const novo = model(body);
+    const novo = rede_model(body);
 
     if (novo) {
         db.push(novo);
@@ -16,7 +17,7 @@ const show = id => db.find(el => el.id == id);
 
 const update = (id, body) => {
     const index = db.findIndex(el => el.id == id);
-    const novo = model(body, id);
+    const novo = rede_model(body, id);
 
     if (index != -1) {
         db[index] = novo;

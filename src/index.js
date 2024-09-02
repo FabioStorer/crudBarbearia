@@ -1,176 +1,39 @@
 const express = require('express');
-const endereco = require('./middlewares/endereco.js');
-const atendimento_controller = require('./controllers/atendimento.js');
-const barbearia_controller = require('./controllers/barbearia.js');
-const barbeiro_controller = require('./controllers/barbeiro.js');
-const cliente_controller = require('./controllers/cliente.js');
-const rede_controller = require('./controllers/rede.js');
-const servico_controller = require('./controllers/servico.js');
+const atendimento_router = require('./routes/atendimento.js');
+const barbearia_router = require('./routes/barbearia.js');
+const barbeiro_router = require('./routes/barbeiro.js');
+const cliente_router = require('./routes/cliente.js');
+const rede_router = require('./routes/rede.js');
+const servico_router = require('./routes/servico.js');
 const usuario_router = require('./routes/usuario.js');
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
-/// GERENCIAMENTO DO ATENDIMENTO ///
+/// ATENDIMENTO ///
 
-app.post('/atendimento', (req, res) => {
-    const code = atendimento_controller.store(req.body);
-    res.status(code).json();
-});
+app.use('/atendimento', atendimento_router);
 
-app.get('/atendimento', (req, res) => {
-    const atendimento = atendimento_controller.index();
-    res.json(atendimento);
-});
+/// BARBEARIA ///
 
-app.get('/atendimento/:id', (req, res) => {
-    const atendimento = atendimento_controller.show(req.params.id);
-    res.json(atendimento);
-});
+app.use('/barbearia', barbearia_router);
 
-app.put('/atendimento/:id', (req, res) => {
-    const code = atendimento_controller.update(req.params.id, req.body);
-    res.status(code).json();
-});
+/// BARBEIRO ///
 
-app.delete('/atendimento/:id', (req, res) => {
-    atendimento_controller.destroy(req.params.id);
-    res.json();
-});
+app.use('/barbero', barbeiro_router);
 
-/// GERENCIAMENTO DE BARBEARIA ///
+/// CLIENTE ///
 
-app.post('/barbearia', endereco, (req, res) => {
-    const code = barbearia_controller.store(req.body);
-    res.status(code).json();
-});
+app.use('/cliente', cliente_router);
 
-app.get('/barbearia', (req, res) => {
-    res.json(barbearia_controller.index());
-});
+/// REDE ///
 
-app.get('/barbearia/:id', (req, res) => {
-    res.json(barbearia_controller.show(req.params.id));
-});
+app.use('/rede', rede_router);
 
-app.put('/barbearia/:id', endereco, (req, res) => {
-    const code = barbearia_controller.update(req.params.id, req.body)
-    res.status(code).json();
-});
+/// SERVICO ///
 
-app.delete('/barbearia/:id', (req, res) => {
-    barbearia_controller.destroy(req.params.id);
-    res.json();
-});
-
-/// GERENCIAMENTO DO BARBEIRO ///
-
-app.post('/barbeiro', (req, res) => {
-    const code = barbeiro_controller.store(req.body);
-    res.status(code).json();
-});
-
-app.get('/barbeiro', (req, res) => {
-    const barbeiro = barbeiro_controller.index();
-    res.json(barbeiro);
-});
-
-app.get('/barbeiro/:id', (req, res) => {
-    const barbeiro = barbeiro_controller.show(req.params.id);
-    res.json(barbeiro);
-});
-
-app.put('/barbeiro/:id', (req, res) => {
-    const code = barbeiro_controller.update(req.params.id, req.body);
-    res.status(code).json();
-});
-
-app.delete('/barbeiro/:id', (req, res) => {
-    barbeiro_controller.destroy(req.params.id);
-    res.json();
-});
-
-///GERENCIAMENTO DO CLIENTE ///
-
-app.post('/cliente', (req, res) => {
-    const code = cliente_controller.store(req.body);
-    res.status(code).json();
-});
-
-app.get('/cliente', (req, res) => {
-    const cliente = cliente_controller.index();
-    res.json(cliente);
-});
-
-app.get('/cliente/:id', (req, res) => {
-    const cliente = cliente_controller.show(req.params.id);
-    res.json(cliente);
-});
-
-app.put('/cliente/:id', (req, res) => {
-    const code = cliente_controller.update(req.params.id, req.body);
-    res.status(code).json();
-});
-
-app.delete('/cliente/:id', (req, res) => {
-    cliente_controller.destroy(req.params.id);
-    res.json();
-});
-
-/// GERENCIAMENTO DA REDE ///
-
-app.post('/rede', (req, res) => {
-    const code = rede_controller.store(req.body);
-    res.status(code).json();
-});
-
-app.get('/rede', (req, res) => {
-    const rede = rede_controller.index();
-    res.json(rede);
-});
-
-app.get('/rede/:id', (req, res) => {
-    const rede = rede_controller.show(req.params.id);
-    res.json(rede);
-});
-
-app.put('/rede/:id', (req, res) => {
-    const code = rede_controller.update(req.params.id, req.body);
-    res.status(code).json();
-});
-
-app.delete('/rede/:id', (req, res) => {
-    rede_controller.destroy(req.params.id);
-    res.json();
-});
-
-/// GERENCIAMENTO DE SERVIÇO ///
-
-app.post('/servico', (req, res) => {
-    const code = servico_controller.store(req.body);
-    res.status(code).json();
-});
-
-app.get('/servico', (req, res) => {
-    const servico = servico_controller.index();
-    res.json(servico);
-});
-
-app.get('/servico/:id', (req, res) => {
-    const servico = servico_controller.show(req.params.id);
-    res.json(servico);
-});
-
-app.put('/servico/:id', (req, res) => {
-    const code = servico_controller.update(req.params.id, req.body);
-    res.status(code).json();
-});
-
-app.delete('/servico/:id', (req, res) => {
-    servico_controller.destroy(req.params.id);
-    res.json();
-});
+app.use('/servico', servico_router)
 
 /// USUÁRIO ///
 

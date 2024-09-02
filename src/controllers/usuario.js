@@ -1,7 +1,8 @@
+const usuario_model = require('../models/usuario_model.js');
 const db = [];
 
 const store = (body) => {
-    const novo = model(body);
+    const novo = usuario_model(body);
 
     if (novo) {
         db.push(novo);
@@ -16,7 +17,7 @@ const show = id => db.find(el => el.id == id);
 
 const update = (id, body) => {
     const index = db.findIndex(el => el.id == id);
-    const novo = model(body, id);
+    const novo = usuario_model(body, id);
 
     if (novo && index != - 1) {
         db[index] = novo;

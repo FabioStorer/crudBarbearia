@@ -1,8 +1,9 @@
+const cliente_model = require('../models/cliente_model.js');
 const db = [];
 
 const store = (body) => {
 
-    const novo = model(body);
+    const novo = cliente_model(body);
 
     if (novo) {
         db.push(novo);
@@ -19,7 +20,7 @@ const update = (id, body) => {
 
     const index = db.findIndex(el => el.id == id);
 
-    const novo = model(body, id);
+    const novo = cliente_model(body, id);
 
     if (index != - 1) {
         db[index] = novo;
